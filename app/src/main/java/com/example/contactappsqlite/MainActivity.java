@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.contactappsqlite.adapter.ContactsAdapter;
-import com.example.contactappsqlite.db.DatabaseHelper;
 import com.example.contactappsqlite.db.entity.Contact;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
