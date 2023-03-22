@@ -8,12 +8,6 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "contacts")
 public class Contact {
 
-    // database constants
-    /*public static final String TABLE_NAME = "contacts";
-    public static final String COLUMN_ID = "contact_id";
-    public static final String COLUMN_NAME = "contact_name";
-    public static final String COLUMN_EMAIL = "contact_email";*/
-
     // variables
     @ColumnInfo(name = "contact_name")
     private String name;
@@ -24,7 +18,7 @@ public class Contact {
     private int id;
 
     // Constructor
-    // 1 - empty
+    // 1 - empty   **ignore the empty constructor cause will be working with params one
     @Ignore
     public Contact() {}
 
@@ -59,11 +53,4 @@ public class Contact {
     public void setId(int id) {
         this.id = id;
     }
-
-    // SQL Query: create table
-    /*public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "( "
-            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + COLUMN_NAME + " TEXT,"
-            + COLUMN_EMAIL + " DATETIME DEFAULT CURRENT_TIMESTAMP"
-            + ")";*/
 }
