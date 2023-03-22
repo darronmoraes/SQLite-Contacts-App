@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,12 +55,30 @@ public class MainActivity extends AppCompatActivity {
         // RecyclerView
         recyclerView = findViewById(R.id.recycler_view_contacts);
 
+        // Callbacks
+        RoomDatabase.Callback myCallback = new RoomDatabase.Callback() {
+            @Override
+            public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                super.onCreate(db);
+                // Create built-in contacts
+                /*createContact("Darron Moraes", "darronmoraes@gmail.com");*/
+                Log.i("TAG", "Database created");
+            }
+
+            @Override
+            public void onOpen(@NonNull SupportSQLiteDatabase db) {
+                super.onOpen(db);
+                Log.i("TAG", "Database opened");
+            }
+        };
+
         // Database
         contactsAppDb = Room.databaseBuilder(
                 getApplicationContext(),
                 ContactsAppDatabase.class,
                 "ContactDb")
-                .allowMainThreadQueries().build();
+                .addCallback(myCallback)
+                .build();
 
         // Contacts List
         // running the process in background and displaying here
